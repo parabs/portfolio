@@ -48,106 +48,191 @@ function switchSolTab(key) {
     lucide.createIcons();
 }
 
-function switchCaseTab(key) {
-    document.querySelectorAll('.case-tab-btn').forEach(b => b.classList.remove('apple-tab-active'));
-    const btn = document.getElementById(`case-btn-${key}`);
-    if (btn) btn.classList.add('apple-tab-active');
+// State tracker for sub-tabs inside Case Study detail view
+let activeCaseSubTab = 'problem';
 
-    const cs = caseStudiesData[key];
-    document.getElementById('case-study-display').innerHTML = `
-        <div class="space-y-2.5">
+function switchCaseTab(tabKey) {
+    const data = caseStudiesData[tabKey];
+    if (!data) return;
+
+    // 1. Update active state for top case study selector buttons
+    document.querySelectorAll('.case-tab-btn').forEach(btn => {
+        btn.classList.remove('apple-tab-active', 'border-slate-700');
+        btn.classList.add('border-slate-800', 'text-slate-400');
+    });
+    const activeBtn = document.getElementById(`case-btn-${tabKey}`);
+    if (activeBtn) {
+        activeBtn.classList.add('apple-tab-active', 'border-slate-700');
+        activeBtn.classList.remove('border-slate-800', 'text-slate-400');
+    }
+
+    const container = document.getElementById('case-study-display');
+    if (!container) return;
+
+    // 2. Render container matching your exact screenshot header layout
+    container.innerHTML = `
+        <div class="space-y-4 text-xs">
             
-            <!-- Row 1: Title Info (Left) + 4 Metric Boxes (Right) -->
-            <div class="grid lg:grid-cols-12 gap-3 items-center border-b border-slate-800/80 pb-2.5">
-                <div class="lg:col-span-5 space-y-0.5">
-                    <span class="px-2 py-0.5 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[9px] font-bold uppercase tracking-wider rounded">${cs.tag}</span>
-                    <h3 class="text-2xl font-extrabold text-white leading-tight mt-0.5">${cs.title}</h3>
-                    <p class="text-[11px] text-slate-400 font-mono">${cs.subtitle}</p>
-                </div>
+            <!-- Top Header Grid: Title/Tag on Left, Metrics on Right -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center border-b border-slate-800/80 pb-4">
                 
+                <!-- Left: Tag, Title & Subtitle -->
+                <div class="lg:col-span-5 space-y-1">
+                    <span class="inline-block text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 uppercase">
+                        ${data.tag}
+                    </span>
+                    <h3 class="text-2xl font-extrabold text-white tracking-tight">${data.title}</h3>
+                    <p class="text-xs text-slate-400 font-mono">${data.subtitle}</p>
+                </div>
+
+                <!-- Right: 4 Metrics Tiles Strip -->
                 <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    ${cs.metrics.map(m => `
-                        <div class="p-1.5 bg-slate-900/90 border border-slate-800/80 rounded-xl text-center">
-                            <div class="text-base font-extrabold text-amber-500">${m.value}</div>
-                            <div class="text-[8px] uppercase font-semibold text-slate-400 mt-0.5">${m.label}</div>
+                    ${data.metrics.map(m => `
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80 text-center flex flex-col justify-center">
+                            <div class="text-lg font-extrabold text-amber-500 font-mono leading-none">${m.value}</div>
+                            <div class="text-[8px] uppercase tracking-wider text-slate-400 mt-1 font-semibold leading-tight">${m.label}</div>
                         </div>
                     `).join('')}
                 </div>
+
             </div>
 
-            <!-- Row 2: Transformation Diagram Section -->
-            <div class="space-y-1">
-                <span class="text-[9px] font-bold text-amber-500 uppercase tracking-wider block">Transformation Diagram</span>
-                <div class="grid md:grid-cols-12 gap-2.5 text-xs">
-                    
-                    <!-- Current Friction State Box -->
-                    <div class="md:col-span-5 p-2 bg-slate-900/40 border border-slate-800/80 rounded-xl">
-                        <span class="text-[9px] font-bold text-red-400 uppercase tracking-wider block mb-1">Current Friction State</span>
-                        <div class="flex items-center justify-between gap-1 text-[10px] font-mono text-slate-400">
-                            <span class="px-2 py-1 bg-slate-950 rounded border border-slate-800">Jira / Excel Logs</span>
-                            <span class="text-red-500 font-bold">---</span>
-                            <span class="px-2 py-1 bg-slate-950 rounded border border-slate-800">Manual Slides</span>
-                            <span class="text-red-500 font-bold">---</span>
-                            <span class="px-2 py-1 bg-slate-950 rounded border border-slate-800">Late Risk Alerts</span>
-                            <span class="text-red-500 font-bold">---</span>
-                            <span class="px-1.5 py-1 bg-red-950/40 text-red-300 rounded border border-red-800/50 text-center">PM Burnout / Delays</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Target Solution Architecture Box -->
-                    <div class="md:col-span-7 p-2 bg-slate-900/60 border border-slate-800/80 rounded-xl">
-                        <span class="text-[9px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Target Solution Architecture</span>
-                        <div class="flex items-center justify-between gap-1 text-[10px] font-mono text-emerald-400">
-                            <span class="px-2 py-1 bg-slate-950 rounded border border-amber-500/40 text-amber-300">Context AI Parsing</span>
-                            <span class="text-emerald-500 font-bold">—</span>
-                            <span class="px-2 py-1 bg-slate-950 rounded border border-slate-800">Predictive Alerts</span>
-                            <span class="text-emerald-500 font-bold">—</span>
-                            <span class="px-2 py-1 bg-slate-950 rounded border border-slate-800">Auto Executive Docs</span>
-                            <span class="text-emerald-500 font-bold">—</span>
-                            <span class="px-2 py-1 bg-emerald-950/40 text-emerald-300 rounded border border-emerald-800/50">Predictable Delivery</span>
-                        </div>
-                    </div>
-
-                </div>
+            <!-- Why I Built It Callout Block -->
+            <div class="p-3.5 bg-slate-900/80 rounded-xl border border-amber-500/30 space-y-1">
+                <span class="font-bold text-amber-400 uppercase tracking-wider text-[10px] block">WHY I BUILT IT</span>
+                <p class="text-slate-300 leading-relaxed">
+                    ${data.whyIBuiltIt ? data.whyIBuiltIt : 'After 25+ years leading enterprise delivery, I built this solution to address core operational bottlenecks.'}
+                </p>
             </div>
 
-            <!-- Row 3: Platform Architecture Components (Full Box and Arrow Chain Restored) -->
-            <div class="space-y-1">
-                <span class="text-[9px] font-bold text-white uppercase tracking-wider block">Platform Architecture Components</span>
-                <div class="p-2 bg-slate-950/80 border border-slate-800 rounded-xl">
-                    <div class="flex items-center justify-between gap-2 font-mono text-[10px] text-amber-400 text-center">
-                        ${cs.archFlow.map((node, idx) => `
-                            <div class="px-3 py-1 bg-slate-900 rounded border border-slate-800/80 flex-1 truncate" title="${node}">${node}</div>
-                            ${idx < cs.archFlow.length - 1 ? '<span class="text-slate-600 font-bold">→</span>' : ''}
-                        `).join('')}
-                    </div>
-                </div>
+            <!-- Interactive Sub-Tabs Bar -->
+            <div class="flex overflow-x-auto gap-2 border-b border-slate-800 pb-2 no-scrollbar">
+                <button onclick="switchCaseSubTab('problem', '${tabKey}')" id="subtab-problem" class="sub-tab-btn border rounded-lg px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all">Problem</button>
+                <button onclick="switchCaseSubTab('whynow', '${tabKey}')" id="subtab-whynow" class="sub-tab-btn border rounded-lg px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all">Why Now</button>
+                <button onclick="switchCaseSubTab('reality', '${tabKey}')" id="subtab-reality" class="sub-tab-btn border rounded-lg px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all">Current Reality</button>
+                <button onclick="switchCaseSubTab('capabilities', '${tabKey}')" id="subtab-capabilities" class="sub-tab-btn border rounded-lg px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all">Core AI Capabilities</button>
+                <button onclick="switchCaseSubTab('future', '${tabKey}')" id="subtab-future" class="sub-tab-btn border rounded-lg px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all">Future State</button>
+                <button onclick="switchCaseSubTab('whywin', '${tabKey}')" id="subtab-whywin" class="sub-tab-btn border rounded-lg px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all">Why This Opportunity Wins</button>
             </div>
 
-            <!-- Row 4: Problem Scope + Commercial Model (Left) & Business Impact Box (Right) -->
-            <div class="grid md:grid-cols-12 gap-3 items-center pt-0.5">
-                <div class="md:col-span-7 space-y-1">
-                    <h4 class="text-[9px] font-bold uppercase tracking-wider text-slate-400">The Problem Scope</h4>
-                    <p class="text-[11px] text-slate-300 leading-relaxed">${cs.problem}</p>
-                    <div class="pt-1 text-[10px]">
-                        <span class="font-bold text-slate-500 uppercase tracking-wider block mb-0.5">Commercial Model</span>
-                        <span class="font-medium text-amber-400">${cs.bizModel}</span>
-                    </div>
-                </div>
+            <!-- Dynamic Sub-Tab Content Output Container -->
+            <div id="subtab-content-container" class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 min-h-[140px]">
+                <!-- Rendered dynamically -->
+            </div>
 
-                <div class="md:col-span-5 bg-emerald-500/5 border border-emerald-500/20 p-2.5 rounded-xl space-y-1">
-                    <h4 class="text-[9px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1">
-                        <i data-lucide="trending-up" class="w-3 h-3"></i> Business Impact
-                    </h4>
-                    <ul class="text-[10px] text-slate-300 space-y-0.5">
-                        ${cs.impacts.map(imp => `<li class="flex items-start gap-1.5"><span class="text-emerald-400 font-bold">✓</span> ${imp}</li>`).join('')}
-                    </ul>
-                </div>
+            <!-- Business Model Footer -->
+            <div class="pt-2 text-center text-xs text-slate-400 border-t border-slate-800">
+                <strong class="text-amber-400 font-mono">BUSINESS MODEL:</strong> ${data.bizModel}
             </div>
 
         </div>
     `;
-    lucide.createIcons();
+
+    // 3. Initialize default sub-tab
+    switchCaseSubTab('problem', tabKey);
+
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+}
+
+// Function to handle switching inner detail tabs
+function switchCaseSubTab(subTabKey, parentTabKey) {
+    activeCaseSubTab = subTabKey;
+    const data = caseStudiesData[parentTabKey];
+
+    // Highlight active sub-tab button
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500/10', 'border-amber-500/40', 'text-amber-400');
+        btn.classList.add('border-slate-800', 'text-slate-400', 'bg-slate-900/40');
+    });
+    
+    const activeBtn = document.getElementById(`subtab-${subTabKey}`);
+    if (activeBtn) {
+        activeBtn.classList.add('bg-amber-500/10', 'border-amber-500/40', 'text-amber-400');
+        activeBtn.classList.remove('border-slate-800', 'text-slate-400', 'bg-slate-900/40');
+    }
+
+    const subContainer = document.getElementById('subtab-content-container');
+    if (!subContainer) return;
+
+    // Content mapping for each tab
+    const contentMap = {
+        'problem': {
+            title: 'PROBLEM STATEMENT',
+            items: data && data.problemList ? data.problemList : [
+                'PMs spend 40% of time on admin, not strategy',
+                'Risk identified too late to act',
+                'Fragmented tools with no unified intelligence'
+            ]
+        },
+        'whynow': {
+            title: 'WHY NOW',
+            items: data && data.whyNow ? data.whyNow : [
+                'Modern LLMs understand enterprise project context',
+                'AI can generate summaries at scale',
+                'Automation can schedule meetings and action items',
+                'Enterprises are AI-ready'
+            ]
+        },
+        'reality': {
+            title: 'CURRENT REALITY',
+            items: data && data.currentReality ? data.currentReality : [
+                'Manual status updates weekly',
+                'Fragmented tools (Jira, Excel, Slides)',
+                'Risk identified too late',
+                'Excessive coordination overhead',
+                '40% administrative overhead burden'
+            ]
+        },
+        'capabilities': {
+            title: 'CORE AI CAPABILITIES',
+            items: data && data.capabilities ? data.capabilities : [
+                'AI Meeting Summaries',
+                'Delivery Intelligence Engine',
+                'Predictive Risk Detection',
+                'Automated Action Items',
+                'Executive Status Reporting'
+            ]
+        },
+        'future': {
+            title: 'FUTURE STATE',
+            items: data && data.futureState ? data.futureState : [
+                'PMs lead delivery—not administration',
+                'Real-time executive visibility',
+                'Risks predicted before escalation',
+                'AI-generated governance artifacts',
+                '40% reduction in administrative effort'
+            ]
+        },
+        'whywin': {
+            title: 'WHY THIS OPPORTUNITY CAN WIN',
+            items: data && data.whyWin ? data.whyWin : [
+                'Built by enterprise delivery practitioners',
+                'Context-aware AI for enterprise delivery',
+                'Integrates with existing PM tools',
+                'Low deployment friction',
+                'Enterprise subscription model'
+            ]
+        }
+    };
+
+    const activeContent = contentMap[subTabKey];
+    if (activeContent) {
+        subContainer.innerHTML = `
+            <div class="space-y-2">
+                <span class="font-bold text-amber-500 text-[11px] uppercase tracking-wider block">${activeContent.title}</span>
+                <ul class="space-y-2 text-slate-300 text-xs">
+                    ${activeContent.items.map(item => `
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-500 font-bold">•</span>
+                            <span>${item}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `;
+    }
 }
 
 function switchIndTab(key) {
@@ -317,7 +402,10 @@ function copyToClipboard(text, badgeId) {
 
 // Initial Load Trigger
 document.addEventListener('DOMContentLoaded', () => {
-    switchCollabTab('collab-exec');
+    // Initial render for Case Studies
+    if (typeof switchCaseTab === 'function') {
+        switchCaseTab('pm-copilot');
+    }
 });
 
 // Click to Copy Helper Function

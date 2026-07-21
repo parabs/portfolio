@@ -1,8 +1,8 @@
-// Refinement 3 & 7: SVG Flow Diagrams & Executive Business Impact Metrics
 const caseStudiesData = {
     'pm-copilot': {
         title: 'PM Copilot',
         subtitle: 'AI Operating System for Enterprise Project Delivery',
+        whyIBuiltIt: 'After 25+ years leading enterprise delivery, I repeatedly saw project managers spend nearly 40% of their time on status reporting, meetings, risk tracking, and documentation. Enterprise AI can automate this administrative work, allowing PMs to focus on delivery, decisions, and leadership.',
         tag: 'VENTURE | B2B SaaS',
         metrics: [
             { value: '40%', label: 'Admin Overhead Reduced' },
@@ -16,46 +16,54 @@ const caseStudiesData = {
             'Generates continuous C-suite status reporting artifacts',
             'Frees senior project leaders to focus on team leadership'
         ],
-        svgCurrent: `
-            <svg class="w-full h-16 text-slate-400" viewBox="0 0 600 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#334155"/>
-                <text x="65" y="34" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Jira / Excel Logs</text>
-                <path d="M125 30H155" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
-                <rect x="160" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#334155"/>
-                <text x="215" y="34" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Manual Slides</text>
-                <path d="M275 30H305" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
-                <rect x="310" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#334155"/>
-                <text x="365" y="34" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Late Risk Alerts</text>
-                <path d="M425 30H455" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
-                <rect x="460" y="10" width="120" height="40" rx="6" fill="#451A1A" stroke="#991B1B"/>
-                <text x="520" y="34" fill="#FCA5A5" font-size="10" font-family="monospace" text-anchor="middle">PM Burnout / Delays</text>
-            </svg>
-        `,
-        svgFuture: `
-            <svg class="w-full h-16 text-slate-300" viewBox="0 0 600 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#F59E0B"/>
-                <text x="65" y="34" fill="#FBBF24" font-size="10" font-family="monospace" text-anchor="middle">Context AI Parsing</text>
-                <path d="M125 30H155" stroke="#10B981" stroke-width="2"/>
-                <rect x="160" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#10B981"/>
-                <text x="215" y="34" fill="#34D399" font-size="10" font-family="monospace" text-anchor="middle">Predictive Alerts</text>
-                <path d="M275 30H305" stroke="#10B981" stroke-width="2"/>
-                <rect x="310" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#10B981"/>
-                <text x="365" y="34" fill="#34D399" font-size="10" font-family="monospace" text-anchor="middle">Auto Executive Docs</text>
-                <path d="M425 30H455" stroke="#10B981" stroke-width="2"/>
-                <rect x="460" y="10" width="120" height="40" rx="6" fill="#064E3B" stroke="#059669"/>
-                <text x="520" y="34" fill="#6EE7B7" font-size="10" font-family="monospace" text-anchor="middle">Predictable Delivery</text>
-            </svg>
-        `,
-        archFlow: ['Jira / Slack / Teams', 'Context Parsing AI Core', 'Delivery Intelligence Engine', 'Executive Dashboard'],
         problem: 'Project Managers spend nearly 40% of their working hours on status reporting, documentation, and coordination.',
-        capabilities: ['AI Meeting Summarizer & Action Items', 'Delivery Intelligence Engine', 'Predictive Risk Recovery Alerts', 'Automated Executive Status Generator'],
-        bizModel: 'Per-Seat SaaS • Enterprise Licensing • Usage Tiers'
+        problemList: [
+            'PMs spend 40% of time on admin, not strategy',
+            'Risk identified too late to act',
+            'Fragmented tools with no unified intelligence'
+        ],
+        whyNow: [
+            'Modern LLMs understand enterprise project context',
+            'AI can generate summaries at scale',
+            'Automation can schedule meetings and action items',
+            'Enterprises are AI-ready'
+        ],
+        currentReality: [
+            'Manual status updates weekly',
+            'Fragmented tools (Jira, Excel, Slides)',
+            'Risk identified too late',
+            'Excessive coordination overhead',
+            '40% administrative overhead burden'
+        ],
+        capabilities: [
+            'AI Meeting Summaries & Action Items',
+            'Delivery Intelligence Engine',
+            'Predictive Risk Detection',
+            'Automated Action Items',
+            'Executive Status Reporting'
+        ],
+        futureState: [
+            'PMs lead delivery—not administration',
+            'Real-time executive visibility',
+            'Risks predicted before escalation',
+            'AI-generated governance artifacts',
+            '40% reduction in administrative effort'
+        ],
+        whyWin: [
+            'Built by enterprise delivery practitioners',
+            'Context-aware AI for enterprise delivery',
+            'Integrates with existing PM tools',
+            'Low deployment friction',
+            'Enterprise subscription model'
+        ],
+        bizModel: 'Per-Seat SaaS • Enterprise Licensing • AI Usage Tiers'
     },
     'society-os': {
         title: 'Society OS',
         subtitle: 'WhatsApp-First Governance Platform for Housing Societies',
-        tag: 'VENTURE | PropTech / GovTech',
-        metrics: [
+         tag: 'VENTURE | PropTech / GovTech',
+         whyIBuiltIt: 'Cooperative housing societies rely on untrained volunteer treasurers dealing with lost paper receipts and complex audits. I built Society OS on WhatsApp so management committees get automated financial ledgers and audit trails without forcing anyone to install an app.',
+         metrics: [
             { value: '100K+', label: 'Target Societies' },
             { value: '80%', label: 'Target Retention' },
             { value: '0', label: 'App Installs Needed' },
@@ -67,39 +75,47 @@ const caseStudiesData = {
             'Provides real-time UPI ledger reconciliation via simple chats',
             'Ensures legal and operational continuity during committee handovers'
         ],
-        svgCurrent: `
-            <svg class="w-full h-16 text-slate-400" viewBox="0 0 600 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#334155"/>
-                <text x="65" y="34" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Paper Registers</text>
-                <path d="M125 30H155" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
-                <rect x="160" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#334155"/>
-                <text x="215" y="34" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">WhatsApp Group Chaos</text>
-                <path d="M275 30H305" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
-                <rect x="310" y="10" width="120" height="40" rx="6" fill="#451A1A" stroke="#991B1B"/>
-                <text x="370" y="34" fill="#FCA5A5" font-size="10" font-family="monospace" text-anchor="middle">Annual Audit Panic</text>
-            </svg>
-        `,
-        svgFuture: `
-            <svg class="w-full h-16 text-slate-300" viewBox="0 0 600 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#F59E0B"/>
-                <text x="65" y="34" fill="#FBBF24" font-size="10" font-family="monospace" text-anchor="middle">WhatsApp Log</text>
-                <path d="M125 30H155" stroke="#10B981" stroke-width="2"/>
-                <rect x="160" y="10" width="110" height="40" rx="6" fill="#1E293B" stroke="#10B981"/>
-                <text x="215" y="34" fill="#34D399" font-size="10" font-family="monospace" text-anchor="middle">NLP Intent Engine</text>
-                <path d="M275 30H305" stroke="#10B981" stroke-width="2"/>
-                <rect x="310" y="10" width="120" height="40" rx="6" fill="#064E3B" stroke="#059669"/>
-                <text x="370" y="34" fill="#6EE7B7" font-size="10" font-family="monospace" text-anchor="middle">Continuous Audit Log</text>
-            </svg>
-        `,
-        archFlow: ['WhatsApp User Interface', 'AI NLP Intent Parser', 'Finance & Reconciliation Core', 'Committee & Auditor View'],
         problem: 'Cooperative Housing Societies are run by untrained volunteer treasurers, creating disputes and audit failures.',
-        capabilities: ['WhatsApp Interface (Zero App Install)', 'AI-powered Receipt & Expense Parsing', 'Automated Financial Ledger', 'Committee Handover Records'],
+        problemList: [
+            'Untrained volunteer treasurers handle complex finances',
+            'Disputed expense receipts and lost accounting paper trails',
+            'High friction and resistance to downloading standalone native apps'
+        ],
+        whyNow: [
+            'WhatsApp Business API supports rich conversational UI',
+            'UPI payment adoption is ubiquitous across all user demographics',
+            'LLM NLP intent parsing easily extracts financial entities from chat text'
+        ],
+        currentReality: [
+            'Manual paper ledgers and fragmented WhatsApp groups',
+            'Cash & UPI collection matching requires days of manual effort',
+            'Annual audit panic due to missing financial documents'
+        ],
+        capabilities: [
+            'WhatsApp Conversational Interface (Zero App Install)',
+            'AI-Powered Receipt, Invoice & Expense OCR Parsing',
+            'Automated Double-Entry Financial Ledger',
+            'Instant UPI Reconciliation & Payment Receipts',
+            'Committee Handover & Continuous Audit Logs'
+        ],
+        futureState: [
+            '100% continuous audit readiness year-round',
+            'Instant friction-free maintenance dues collection via WhatsApp',
+            'Transparent digital record keeping during committee handovers',
+            'Zero technical barrier for elderly residents or volunteers'
+        ],
+        whyWin: [
+            'Zero app installation barrier leverages ubiquitous WhatsApp habit',
+            'Tailored specifically to cooperative society legal bylaws',
+            'First-mover advantage in hyper-local residential fintech'
+        ],
         bizModel: 'Society Monthly Subscription • Auditor Marketplace'
     },
     'campus-os': {
         title: 'Campus OS',
         subtitle: 'Digital Operating Platform for Educational Institutions',
         tag: 'PLATFORM | EdTech',
+        whyIBuiltIt: 'Higher education institutions replace point software every few years, creating data silos and administrative burdens during accreditation. Campus OS was built as an evolving operating platform that keeps data unified and accreditation logs audit-ready.',
         metrics: [
             { value: '5000+', label: 'Target Institutions' },
             { value: '15+', label: 'Core Operational Modules' },
@@ -112,16 +128,45 @@ const caseStudiesData = {
             'Maintains continuous real-time NAAC / NBA accreditation logs',
             'Reduces administrative overhead for teaching faculty'
         ],
-        svgCurrent: `<svg class="w-full h-12 text-slate-500" viewBox="0 0 400 40"><rect x="5" y="5" width="390" height="30" fill="#1E293B" stroke="#334155" rx="4"/><text x="200" y="23" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Fragmented Point Software • Manual Audits</text></svg>`,
-        svgFuture: `<svg class="w-full h-12 text-emerald-400" viewBox="0 0 400 40"><rect x="5" y="5" width="390" height="30" fill="#064E3B" stroke="#059669" rx="4"/><text x="200" y="23" fill="#6EE7B7" font-size="10" font-family="monospace" text-anchor="middle">Campus OS • Unified Intelligence • Automated NAAC Logs</text></svg>`,
-        archFlow: ['Admissions CRM & SIS', 'Campus Operations Core', 'AI Governance Copilots', 'Compliance Analytics Hub'],
-        problem: 'Educational institutions run on fragmented software that becomes obsolete every few years.',
-        capabilities: ['15+ Core Academic & Admin Modules', 'Automated Fee & Payment Reconciliation', 'NAAC / NBA Accreditation AI Tracker', 'Parent & Student Portals'],
+        problem: 'Educational institutions run on fragmented software that becomes obsolete every few years, creating compliance chaos.',
+        problemList: [
+            'Data silos between admissions, fee processing, and academics',
+            'Faculty spend hours on manual accreditation paperwork',
+            'Legacy point software becomes outdated every 3–5 years'
+        ],
+        whyNow: [
+            'National accreditation bodies require continuous digital data logs',
+            'Cloud-native ERPs allow modular feature upgrades without full rewrites',
+            'Institutions are actively replacing rigid legacy software layers'
+        ],
+        currentReality: [
+            'Disconnected spreadsheets and legacy desktop software',
+            'Faculty distracted from teaching during accreditation inspection cycles',
+            'Manual fee collection tracking and delayed reconciliation'
+        ],
+        capabilities: [
+            '15+ Integrated Academic, Admin & Finance Modules',
+            'Automated Fee Collection & Multi-Gateway Reconciliation',
+            'NAAC / NBA Accreditation AI Compliance Engine',
+            'Unified Student, Parent & Faculty Digital Portals',
+            'Predictive Student Retention Analytics'
+        ],
+        futureState: [
+            'Real-time NAAC / NBA audit score tracking',
+            'Unified student lifecycle data from admission to alumni',
+            'Automated academic administrative workflows for faculty'
+        ],
+        whyWin: [
+            'Built as an evolving modular platform, eliminating software obsolescence',
+            'Pre-configured compliance templates for accreditation standards',
+            'Low total cost of ownership compared to legacy ERP monoliths'
+        ],
         bizModel: 'Annual B2B SaaS Subscription • Implementation Support'
     },
     'ai-blueprint': {
         title: 'AI Real Estate Transformation',
         subtitle: 'Enterprise AI Blueprint for Real Estate Developers',
+        whyIBuiltIt: 'Real estate developers face 5-10% budget leakage due to delayed site progress tracking and manual RERA reporting. I designed this AI transformation blueprint to give C-suite leaders real-time visual site intelligence and predictive cash flow control.',
         tag: 'ADVISORY | PropTech',
         metrics: [
             { value: '5-10%', label: 'Cost Leakage Reduced' },
@@ -135,16 +180,45 @@ const caseStudiesData = {
             'Automates multi-project RERA regulatory compliance',
             'Stabilizes developer cash flows through predictive models'
         ],
-        svgCurrent: `<svg class="w-full h-12 text-slate-500" viewBox="0 0 400 40"><rect x="5" y="5" width="390" height="30" fill="#1E293B" stroke="#334155" rx="4"/><text x="200" y="23" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Manual Progress Tracking • Unexpected Overruns</text></svg>`,
-        svgFuture: `<svg class="w-full h-12 text-emerald-400" viewBox="0 0 400 40"><rect x="5" y="5" width="390" height="30" fill="#064E3B" stroke="#059669" rx="4"/><text x="200" y="23" fill="#6EE7B7" font-size="10" font-family="monospace" text-anchor="middle">Visual AI Progress Monitoring • Continuous RERA Tracking</text></svg>`,
-        archFlow: ['Site IoT & Cameras', 'Enterprise ERP Systems', 'AI Operational Analytics Core', 'Executive Command Center'],
         problem: 'Builders experience 5-10% cost leakage due to fragmented tracking across project construction phases.',
-        capabilities: ['End-to-End Construction Mapping', 'Predictive Cash Flow Intelligence', 'Continuous RERA Compliance', 'Site Visual AI Monitoring'],
+        problemList: [
+            'Lack of real-time site visibility leads to material waste and delay',
+            'Cost leakage across procurement, labor, and sub-contractors',
+            'Complex RERA compliance reporting managed across manual spreadsheets'
+        ],
+        whyNow: [
+            'Computer vision & AI site cameras enable remote construction tracking',
+            'Predictive financial models can stabilize volatile cash flows',
+            'Tightened regulatory oversight demands instant compliance data'
+        ],
+        currentReality: [
+            'Delayed weekly/monthly physical site status reports',
+            'Unforeseen budget overruns identified after capital is spent',
+            'Fragmented communication between site engineers and executives'
+        ],
+        capabilities: [
+            'End-to-End Construction Lifecycle Capability Mapping',
+            'Predictive Cash Flow & Materials Intelligence',
+            'Automated RERA Compliance Tracker',
+            'Computer Vision Site Monitoring & Safety AI',
+            'Executive Transformation Roadmap & Vendor Matrix'
+        ],
+        futureState: [
+            'Real-time C-suite dashboard of multi-site construction progress',
+            'Early warning alerts for material waste and budget deviations',
+            'Automated regulatory filing workflows'
+        ],
+        whyWin: [
+            'Grounded in 25+ years of enterprise transformation experience',
+            'Actionable 69-point capability maturity assessment framework',
+            'Vendor-neutral strategic advisory tailored to developer scale'
+        ],
         bizModel: 'Strategic Advisory • Enterprise Transformation Blueprint'
     },
     'citizen-platform': {
         title: 'Digital Citizen Engagement Platform',
         subtitle: 'Enterprise SaaS Platform for Municipal Governments',
+        whyIBuiltIt: 'Real estate developers face 5-10% budget leakage due to delayed site progress tracking and manual RERA reporting. I designed this AI transformation blueprint to give C-suite leaders real-time visual site intelligence and predictive cash flow control.',
         tag: 'ADVISORY | GovTech',
         metrics: [
             { value: '10+', label: 'Digital Engagement Tools' },
@@ -158,11 +232,39 @@ const caseStudiesData = {
             'Transforms unstructured policy feedback into structured GIS maps',
             'Improves citizen trust through transparent municipal operations'
         ],
-        svgCurrent: `<svg class="w-full h-12 text-slate-500" viewBox="0 0 400 40"><rect x="5" y="5" width="390" height="30" fill="#1E293B" stroke="#334155" rx="4"/><text x="200" y="23" fill="#94A3B8" font-size="10" font-family="monospace" text-anchor="middle">Sparse In-Person Consultation Meetings • Manual Logs</text></svg>`,
-        svgFuture: `<svg class="w-full h-12 text-emerald-400" viewBox="0 0 400 40"><rect x="5" y="5" width="390" height="30" fill="#064E3B" stroke="#059669" rx="4"/><text x="200" y="23" fill="#6EE7B7" font-size="10" font-family="monospace" text-anchor="middle">WCAG 2.2 Accessible Digital Engagement Hub • GIS Analytics</text></svg>`,
-        archFlow: ['Citizen Web Portal', 'Surveys & GIS Mapping Engine', 'Analytics Analytics Core', 'Administrative Dashboard'],
         problem: 'Municipalities struggle to achieve representative citizen participation using traditional consultation channels.',
-        capabilities: ['WCAG 2.2 AA Accessible Portal', 'Interactive Polls, Surveys & GIS Mapping', 'Policy Sentiment Analytics', 'Secure Government Cloud Architecture'],
+        problemList: [
+            'In-person town halls reach only a fraction of the population',
+            'Unstructured feedback from public surveys is difficult to analyze',
+            'Non-accessible government portals exclude citizens with disabilities'
+        ],
+        whyNow: [
+            'Governments mandate WCAG 2.2 accessibility standards',
+            'Cloud-native SaaS allows quick deployment across municipal councils',
+            'NLP tools can aggregate thousands of public policy comments instantly'
+        ],
+        currentReality: [
+            'Manual collation of paper forms and public hearing notes',
+            'Low engagement rates among young and working demographics',
+            'Opaque feedback loops reduce public trust in civic projects'
+        ],
+        capabilities: [
+            'WCAG 2.2 AA Accessible Citizen Web & Mobile Portal',
+            'Interactive Surveys, Budget Allocators & GIS Mapping',
+            'NLP Sentiment & Topic Analysis for Public Policy Feedback',
+            'Automated Executive Reports for City Councils',
+            'Secure Government-Grade Cloud Architecture'
+        ],
+        futureState: [
+            'High-volume, representative digital civic participation',
+            'Instant spatial GIS visualization of community feedback',
+            'Transparent, verifiable public decision-making processes'
+        ],
+        whyWin: [
+            'Built specifically for strict municipal compliance and WCAG accessibility',
+            'Scalable SaaS deployment model for local and regional councils',
+            'Integrated sentiment analysis turns noise into clear policy insights'
+        ],
         bizModel: 'Enterprise Government SaaS • Managed Support'
     }
 };
