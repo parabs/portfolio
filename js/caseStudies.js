@@ -218,7 +218,7 @@ const caseStudiesData = {
     'citizen-platform': {
         title: 'Digital Citizen Engagement Platform',
         subtitle: 'Enterprise SaaS Platform for Municipal Governments',
-        whyIBuiltIt: 'Real estate developers face 5-10% budget leakage due to delayed site progress tracking and manual RERA reporting. I designed this AI transformation blueprint to give C-suite leaders real-time visual site intelligence and predictive cash flow control.',
+        whyIBuiltIt: 'Traditional municipal consultations rely on low-turnout town halls and unstructured paper feedback, leaving cities without representative community input. I engineered this digital engagement SaaS platform to give local governments inclusive, WCAG-compliant tools to gather structured resident feedback and drive data-backed civic decisions.',
         tag: 'ADVISORY | GovTech',
         metrics: [
             { value: '10+', label: 'Digital Engagement Tools' },
@@ -228,18 +228,18 @@ const caseStudiesData = {
         ],
         impacts: [
             'Reaches underrepresented citizen groups via accessible digital channels',
-            'Provides WCAG 2.2 compliant engagement tooling',
-            'Transforms unstructured policy feedback into structured GIS maps',
+            'Provides WCAG 2.2 AA compliant engagement tooling',
+            'Transforms unstructured policy feedback into structured GIS insights',
             'Improves citizen trust through transparent municipal operations'
         ],
-        problem: 'Municipalities struggle to achieve representative citizen participation using traditional consultation channels.',
+        problem: 'Municipalities struggle to achieve representative citizen participation using traditional, analog consultation channels.',
         problemList: [
             'In-person town halls reach only a fraction of the population',
             'Unstructured feedback from public surveys is difficult to analyze',
             'Non-accessible government portals exclude citizens with disabilities'
         ],
         whyNow: [
-            'Governments mandate WCAG 2.2 accessibility standards',
+            'Governments mandate strict WCAG 2.2 accessibility standards',
             'Cloud-native SaaS allows quick deployment across municipal councils',
             'NLP tools can aggregate thousands of public policy comments instantly'
         ],
